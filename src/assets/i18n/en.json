@@ -1,0 +1,63 @@
+{
+  "META": {
+    "TITLE": "Proxly",
+    "SUBTITLE": "Arrival alerts",
+    "DESCRIPTION": "Proxly notifies you as you approach your stop using background geofencing. Pick a destination on the map, set the radius, and relax—Proxly wakes you with a notification and haptics when you enter the zone."
+  },
+  "ONBOARDING": {
+    "WELCOME": "Welcome to Proxly",
+    "PERMISSIONS_TITLE": "Enable notifications to wake you on arrival",
+    "LOCATION_TITLE": "We need access to your location",
+    "GEOFENCE_TITLE": "We'll set up proximity alerts"
+  },
+  "MAP": {
+    "SEARCH_PLACEHOLDER": "Search destination...",
+    "SET_ALERT": "Set alert",
+    "ALERT_SET": "Alert set",
+    "CANCEL_ALERT": "Cancel alert",
+    "RADIUS_LABEL": "Radius",
+    "ARRIVAL_TITLE": "You've arrived at your destination!",
+    "ARRIVAL_SUBTITLE": "Get ready to get off",
+    "GOOGLE_SUGGESTIONS": "Powered by Google Places"
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "RADIUS": "Alert radius",
+    "NOTIFICATIONS": "Notifications",
+    "ABOUT": "About Proxly",
+    "LANGUAGE": "Language",
+    "THEME": "Theme",
+    "UNITS": "Units",
+    "METERS": "Meters",
+    "MILES": "Miles",
+    "METERS_SHORT": "m",
+    "MILES_SHORT": "mi",
+    "KILOMETERS_SHORT": "km",
+    "SEARCH_HISTORY": "Search history",
+    "GEOFENCE_RADIUS": "Geofencing radius (meters)",
+    "SAVE": "Save Settings",
+    "GEOFENCING_ACTIVE": "Proximity alerts",
+    "GEOFENCING_ENABLED": "Geofencing enabled",
+    "GEOFENCING_ENABLED_WITH_DISTANCE": "Geofencing enabled",
+    "GEOFENCING_DISABLED": "Geofencing disabled",
+    "DISTANCE_TO_DESTINATION": "to destination"
+  },
+  "DESTINATIONS": {
+    "TITLE": "Destinations"
+  },
+  "HELP": {
+    "TITLE": "How does Proxly work?",
+    "STEP1_TITLE": "1. Choose your destination",
+    "STEP1_DESC": "Tap on the map or search for an address to mark where you want to be notified.",
+    "STEP2_TITLE": "2. Adjust the radius",
+    "STEP2_DESC": "Set the alert distance using the slider. Proxly will notify you when you enter that zone.",
+    "STEP3_TITLE": "3. Enable alerts",
+    "STEP3_DESC": "Make sure the alert toggle is enabled to receive background notifications.",
+    "STEP4_TITLE": "4. Relax and travel!",
+    "STEP4_DESC": "Proxly works in the background. It will wake you with notification, vibration and sound when you arrive.",
+    "TIPS_TITLE": "Helpful tips:",
+    "TIP1": "Keep the app running in the background for it to work properly",
+    "TIP2": "Adjust radius based on transport: larger for car, smaller for walking",
+    "TIP3": "Make sure you have location and notification permissions enabled"
+  }
+}

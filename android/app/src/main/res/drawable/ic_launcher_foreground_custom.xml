@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    
+    <!-- Pin de ubicación principal -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,30C44.06,30 36,38.06 36,48c0,14 18,30 18,30s18,-16 18,-30C72,38.06 63.94,30 54,30z"/>
+    
+    <!-- Círculo interior del pin (usando path) -->
+    <path android:fillColor="#14B8A6"
+        android:pathData="M54,42a6,6 0,1 1,0 12a6,6 0,1 1,0 -12z"/>
+    
+    <!-- Campana de notificación en el centro -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,44.5c-1.65,0 -3,1.35 -3,3v1.5c0,0.5 -0.5,1 -1,1v1c0,0.55 0.45,1 1,1h6c0.55,0 1,-0.45 1,-1v-1c-0.5,0 -1,-0.5 -1,-1v-1.5C57,45.85 55.65,44.5 54,44.5z"/>
+    
+    <!-- Punto de la campana (usando path) -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,51.7a0.8,0.8 0,1 1,0 1.6a0.8,0.8 0,1 1,0 -1.6z"/>
+</vector>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#14B8A6</color>
+    <color name="colorPrimaryDark">#0F766E</color>
+    <color name="colorAccent">#2DD4BF</color>
+    
+    <!-- Proxly Brand Colors -->
+    <color name="proxly_primary">#14B8A6</color>
+    <color name="proxly_secondary">#0F766E</color>
+    <color name="proxly_accent">#2DD4BF</color>
+    
+    <!-- Status Bar -->
+    <color name="ic_launcher_background">#14B8A6</color>
+    <color name="splash_background">#14B8A6</color>
+</resources>

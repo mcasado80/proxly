@@ -1,0 +1,267 @@
+<ion-header>
+  <ion-toolbar id="appToolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Proxly</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="showHelpModal()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollY]="false" class="map-content">
+  <!-- Contenedor del mapa -->
+  <div id="mapId" tabindex="-1"></div>
+
+  <!-- Searchbar para buscar una dirección -->
+  <app-searchbar (locationSelected)="moveMarker($event)"></app-searchbar>
+
+  <!-- Toggle de Geofencing -->
+  <div class="geofencing-toggle">
+    <ion-item lines="none">
+      <ion-icon
+        name="notifications"
+        slot="start"
+        [color]="geofencingEnabled ? 'primary' : 'medium'"
+      ></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h3>{{ 'SETTINGS.GEOFENCING_ACTIVE' | translate }}</h3>
+        <p>
+          {{ (geofencingStatusText | translate) }}
+          <span
+            *ngIf="geofencingEnabled && formattedDistance"
+            class="distance-info"
+          >
+            • {{ formattedDistance }} {{ 'SETTINGS.DISTANCE_TO_DESTINATION' |
+            translate }}
+          </span>
+        </p>
+      </ion-label>
+      <ion-toggle
+        [(ngModel)]="geofencingEnabled"
+        (ionChange)="toggleGeofencing()"
+        color="primary"
+        slot="end"
+      >
+      </ion-toggle>
+    </ion-item>
+  </div>
+
+  <!-- Botón para centrar en la ubicación actual, parte inferior derecha -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="centerOnCurrentLocation()">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Label para mostrar el radio y distancia a destino -->
+  <div class="radio-label" (click)="openSettingsMenu()">
+    {{ 'MAP.RADIUS_LABEL' | translate }}: {{ radiusInSelectedUnit }}
+    {{distanceUnitSvc.radiusUnitLabel}}
+  </div>
+
+  <!-- Overlay de llegada -->
+  <div
+    class="arrival-overlay"
+    *ngIf="showArrivalOverlay"
+    (click)="dismissArrivalOverlay()"
+  >
+    <div class="arrival-content">
+      <ion-icon name="flag" class="arrival-icon"></ion-icon>
+      <div class="arrival-title">{{ 'MAP.ARRIVAL_TITLE' | translate }}</div>
+      <div class="arrival-subtitle">
+        {{ 'MAP.ARRIVAL_SUBTITLE' | translate }}
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- Menú hamburguesa -->
+<ion-menu
+  side="start"
+  menuId="first"
+  contentId="mapId"
+  (ionWillOpen)="onMenuWillOpen()"
+  (ionDidOpen)="onMenuOpened()"
+  (ionWillClose)="onMenuWillClose()"
+  (ionDidClose)="onMenuClosed()"
+>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button fill="clear" (click)="menuCtrl.close('first')">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>{{ 'SETTINGS.TITLE' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item lines="none">
+        <ion-label>{{ 'SETTINGS.UNITS' | translate }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-segment
+          [(ngModel)]="distanceUnitSvc.unit"
+          (ionChange)="changeDistanceUnit()"
+        >
+          <ion-segment-button value="metric">
+            <ion-label>{{ 'SETTINGS.METERS' | translate }}</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="imperial">
+            <ion-label>{{ 'SETTINGS.MILES' | translate }}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>{{ 'SETTINGS.LANGUAGE' | translate }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-segment [(ngModel)]="language" (ionChange)="changeLanguage()">
+          <ion-segment-button value="es">
+            <ion-label>ES</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="en">
+            <ion-label>EN</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="system">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>{{ 'SETTINGS.THEME' | translate }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-segment #themeSeg [(ngModel)]="themeSvc.theme" (ionChange)="applyTheme()">
+          <ion-segment-button value="light">
+            <ion-icon name="sunny-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="dark">
+            <ion-icon name="moon-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="system">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+      <ion-item>
+        <ion-label
+          >{{ 'SETTINGS.RADIUS' | translate }}: {{radiusInSelectedUnit}}
+          {{distanceUnitSvc.radiusUnitLabel}}</ion-label
+        >
+      </ion-item>
+      <ion-item>
+        <ion-range
+          [min]="distanceUnitSvc.rangeMin"
+          [max]="distanceUnitSvc.rangeMax"
+          [step]="distanceUnitSvc.rangeStep"
+          [(ngModel)]="rangeValue"
+          (ionChange)="updateCircleRadius()"
+        >
+          <ion-label slot="start">{{distanceUnitSvc.rangeMinLabel}}</ion-label>
+          <ion-label slot="end">{{distanceUnitSvc.rangeMaxLabel}}</ion-label>
+        </ion-range>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label>{{ 'SETTINGS.SEARCH_HISTORY' | translate }}</ion-label>
+        <ion-button
+          size="small"
+          fill="clear"
+          color="danger"
+          (click)="clearHistory()"
+        >
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item *ngFor="let r of historyList">
+        <ion-label (click)="goToHistory(r)">
+          <div>{{ r.description }}</div>
+          <small
+            >{{ r.lat | number:'1.6-6' }}, {{ r.lng | number:'1.6-6' }}</small
+          >
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="toggleFavorite(r)">
+          <ion-icon [name]="r.favorite ? 'star' : 'star-outline'"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Modal de Ayuda -->
+<ion-modal
+  #helpModal
+  [isOpen]="isHelpModalOpen"
+  (didDismiss)="isHelpModalOpen = false"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ 'HELP.TITLE' | translate }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="closeHelpModal()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="help-modal-content">
+      <div class="help-section">
+        <div class="help-header">
+          <div class="help-icon">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+          <h3>{{ 'HELP.STEP1_TITLE' | translate }}</h3>
+        </div>
+        <p>{{ 'HELP.STEP1_DESC' | translate }}</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-header">
+          <div class="help-icon">
+            <ion-icon name="resize-outline"></ion-icon>
+          </div>
+          <h3>{{ 'HELP.STEP2_TITLE' | translate }}</h3>
+        </div>
+        <p>{{ 'HELP.STEP2_DESC' | translate }}</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-header">
+          <div class="help-icon">
+            <ion-icon name="notifications-outline"></ion-icon>
+          </div>
+          <h3>{{ 'HELP.STEP3_TITLE' | translate }}</h3>
+        </div>
+        <p>{{ 'HELP.STEP3_DESC' | translate }}</p>
+      </div>
+
+      <div class="help-section">
+        <div class="help-header">
+          <div class="help-icon">
+            <ion-icon name="bed-outline"></ion-icon>
+          </div>
+          <h3>{{ 'HELP.STEP4_TITLE' | translate }}</h3>
+        </div>
+        <p>{{ 'HELP.STEP4_DESC' | translate }}</p>
+      </div>
+
+      <div class="help-tips">
+        <h4>{{ 'HELP.TIPS_TITLE' | translate }}</h4>
+        <ul>
+          <li>{{ 'HELP.TIP1' | translate }}</li>
+          <li>{{ 'HELP.TIP2' | translate }}</li>
+          <li>{{ 'HELP.TIP3' | translate }}</li>
+        </ul>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

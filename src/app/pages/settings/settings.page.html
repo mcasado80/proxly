@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'SETTINGS.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>{{ 'SETTINGS.GEOFENCE_RADIUS' | translate }}</ion-label>
+    <ion-input type="number" [(ngModel)]="radius"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-range min="100" max="5000" [(ngModel)]="radius">
+      <ion-label slot="start">100m</ion-label>
+      <ion-label slot="end">5000m</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-button expand="full" (click)="saveSettings()"
+    >{{ 'SETTINGS.SAVE' | translate }}</ion-button
+  >
+</ion-content>

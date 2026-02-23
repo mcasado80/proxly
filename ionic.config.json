@@ -1,0 +1,13 @@
+{
+  "name": "proxly",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api/places",
+      "proxyUrl": "https://places.googleapis.com"
+    }
+  ]
+}

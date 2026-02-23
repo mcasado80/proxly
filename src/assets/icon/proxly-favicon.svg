@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- App Icon Background with Rounded Corners -->
+  <rect x="0" y="0" width="32" height="32" rx="7" ry="7" fill="#1a1a1a"/>
+  
+  <!-- Location Pin in Teal -->
+  <path d="M16 5c-4.42 0-8 3.58-8 8 0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8z" fill="#14B8A6"/>
+  
+  <!-- Inner Circle of Pin -->
+  <circle cx="16" cy="13" r="3.5" fill="#1a1a1a"/>
+  
+  <!-- Notification Bell in Center (White) -->
+  <path d="M16 10.5c-1.38 0-2.5 1.12-2.5 2.5v1.5c0 0.28-0.22 0.5-0.5 0.5h-0.5v0.5c0 0.28 0.22 0.5 0.5 0.5h6c0.28 0 0.5-0.22 0.5-0.5V15h-0.5c-0.28 0-0.5-0.22-0.5-0.5V13c0-1.38-1.12-2.5-2.5-2.5z" fill="#FFFFFF"/>
+  <circle cx="16" cy="16.5" r="0.5" fill="#FFFFFF"/>
+</svg>

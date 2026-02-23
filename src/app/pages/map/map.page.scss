@@ -1,0 +1,400 @@
+// Configuración de la página principal para altura completa
+.map-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --overflow: hidden;
+  height: 100%;
+  /* Respetar safe areas */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+#mapId {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+// Posicionar searchbar sobre el mapa
+app-searchbar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 999; /* Menor que el menú para que no interfiera */
+  background: var(--ion-background-color);
+}
+
+/* Light/Dark overrides for page components */
+:root.ion-palette-dark ion-toolbar,
+:root.ion-palette-dark ion-searchbar,
+:root.ion-palette-dark ion-content,
+:root.ion-palette-dark ion-item,
+:root.ion-palette-dark ion-menu {
+  --background: #0f162e;
+  --ion-background-color: #0b1020;
+  --ion-text-color: #e6edf3;
+}
+
+/* Asegurar que el toolbar del header cambie con el tema */
+ion-header ion-toolbar {
+  --background: var(--ion-toolbar-background, var(--ion-background-color));
+  --color: var(--ion-toolbar-color, var(--ion-text-color));
+}
+
+:root.ion-palette-dark ion-header ion-toolbar {
+  --background: #0f162e;
+  --color: #e6edf3;
+}
+
+/* Estilos para los botones en el toolbar */
+ion-header ion-toolbar ion-button {
+  --color: var(--ion-toolbar-color, var(--ion-text-color));
+}
+
+:root.ion-palette-dark ion-header ion-toolbar ion-button {
+  --color: #e6edf3;
+}
+
+:root.ion-palette-dark .radio-label {
+  color: #ffffff;
+  background: rgba(20, 184, 166, 0.9);
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.radio-label {
+  position: absolute;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: calc(10px + env(safe-area-inset-left, 0px));
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 6px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+ion-fab {
+  z-index: 1000; /* Asegurar que el FAB esté sobre el mapa */
+  /* Ajustar posición para safe areas */
+  --ion-fab-button-margin-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  --ion-fab-button-margin-end: calc(16px + env(safe-area-inset-right, 0px));
+
+  ion-fab-button {
+    --background: var(--ion-color-primary); /* Teal consistente */
+    --color: #ffffff;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --border: 2px solid #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombra en el texto */
+
+    &:hover {
+      --background: var(--ion-color-primary-shade); /* Teal shade consistente */
+    }
+  }
+}
+
+ion-menu {
+  z-index: 10000; /* Menú por encima de todo */
+}
+
+.geofencing-toggle {
+  position: absolute;
+  top: 36px; /* Debajo de la searchbar */
+  width: 100%;
+  z-index: 998; /* Menor que searchbar y menú */
+  margin: 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: var(--ion-background-color);
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --min-height: 60px;
+
+    ion-icon {
+      font-size: 24px;
+      margin-right: 12px;
+    }
+
+    ion-label {
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: var(--ion-text-color);
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0;
+        color: var(--ion-color-medium);
+
+        .distance-info {
+          color: var(--ion-color-primary);
+          font-weight: 500;
+          font-size: 13px;
+        }
+      }
+    }
+
+    ion-toggle {
+      --handle-width: 28px;
+      --handle-height: 28px;
+      --track-width: 56px;
+      --track-height: 32px;
+      --track-background: var(--ion-color-step-200, #e5e7eb);
+    }
+  }
+}
+
+:root.ion-palette-dark .geofencing-toggle {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.arrival-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 250ms ease-out;
+  /* Evitar focus en elementos ocultos */
+  pointer-events: auto;
+}
+
+.arrival-content {
+  background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+  color: #fff;
+  padding: 28px 24px;
+  border-radius: 16px;
+  text-align: center;
+  width: min(90vw, 420px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transform: scale(0.9);
+  animation: popIn 300ms ease-out forwards;
+}
+
+.arrival-icon {
+  font-size: 52px;
+  margin-bottom: 8px;
+  animation: pulse 1s ease-in-out infinite;
+  color: #e3f2fd;
+}
+
+.arrival-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.arrival-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Styling para segments en filas separadas */
+ion-item > ion-segment {
+  width: 100%;
+
+  ion-segment-button {
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+/* Help Modal Styles */
+.help-modal-content {
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --overflow: scroll;
+  --background: var(--ion-background-color);
+  height: 100%;
+
+  .help-section {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 24px 16px;
+    background: var(--ion-item-background, var(--ion-background-color));
+    border-radius: 12px;
+    margin: 8px 16px 16px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .help-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .help-icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ion-color-primary);
+        border-radius: 50%;
+        margin-right: 16px;
+
+        ion-icon {
+          font-size: 24px;
+          color: #ffffff;
+        }
+      }
+
+      h3 {
+        color: var(--ion-text-color);
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        flex: 1;
+      }
+    }
+
+    p {
+      margin: 0;
+      color: var(--ion-text-color);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+  }
+
+  .help-tips {
+    margin-top: 32px;
+    padding: 16px;
+    background: rgba(20, 184, 166, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    margin: 8px 16px 16px 16px;
+
+    h4 {
+      color: var(--ion-color-primary);
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+
+      li {
+        color: var(--ion-text-color);
+        margin-bottom: 8px;
+        line-height: 1.5;
+        font-size: 14px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.geofencing-toggle {
+  background: var(--ion-background-color);
+
+  ion-toggle {
+    --track-background: var(--ion-color-step-200, #e5e7eb);
+    --track-background-checked: var(--ion-color-primary, #14b8a6);
+  }
+}
+
+/* Dark mode toggle track colors */
+.ion-palette-dark .geofencing-toggle ion-toggle {
+  --track-background: var(--ion-color-step-600, #374151);
+}
+
+:root.ion-palette-dark .help-modal-content {
+  .help-section {
+    background: var(--ion-item-background, #1e293b);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+  }
+
+  .help-tips {
+    background: rgba(20, 184, 166, 0.15);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+  }
+}
+
+/* Modal más grande en tablets */
+@media (min-width: 768px) {
+  ion-modal {
+    --width: 80vw;
+    --max-width: 800px;
+    --border-radius: 16px;
+    --min-height: 60vh;
+  }
+}
+
+/* Asegurar visibilidad del modal de ayuda */
+ion-modal {
+  --height: auto;
+  --min-height: 50vh;
+  --max-height: 90vh;
+  
+  ion-header ion-toolbar {
+    --background: var(--ion-toolbar-background, var(--ion-background-color));
+    --color: var(--ion-toolbar-color, var(--ion-text-color));
+  }
+  
+  ion-content {
+    --background: var(--ion-background-color);
+    --color: var(--ion-text-color);
+  }
+}
+
+:root.ion-palette-dark ion-modal {
+  ion-header ion-toolbar {
+    --background: #0f162e;
+    --color: #e6edf3;
+  }
+  
+  ion-content {
+    --background: #1e293b;
+    --color: #e6edf3;
+  }
+}

@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.npm-cache/
+
+# Build output
+www/
+dist/
+
+# Angular
+.angular/
+
+# Environment files (generated from .env at build time)
+src/environments/environment.ts
+src/environments/environment.prod.ts
+.env
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log

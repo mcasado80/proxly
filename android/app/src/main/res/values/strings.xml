@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Proxly</string>
+    <string name="title_activity_main">Proxly</string>
+    <string name="package_name">app.proxly.arrival</string>
+    <string name="custom_url_scheme">app.proxly.arrival</string>
+</resources>

@@ -1,0 +1,63 @@
+{
+  "META": {
+    "TITLE": "Proxly",
+    "SUBTITLE": "Alertas por llegada",
+    "DESCRIPTION": "Proxly te avisa cuando estás por llegar a tu parada usando geocercas en segundo plano. Elegí destino en el mapa, ajustá el radio y dormí tranqui: la app te despierta con notificación y vibración al entrar en zona."
+  },
+  "ONBOARDING": {
+    "WELCOME": "Bienvenido a Proxly",
+    "PERMISSIONS_TITLE": "Activá notificaciones para despertarte al llegar",
+    "LOCATION_TITLE": "Necesitamos acceso a tu ubicación",
+    "GEOFENCE_TITLE": "Configuramos alertas de proximidad"
+  },
+  "MAP": {
+    "SEARCH_PLACEHOLDER": "Buscar destino...",
+    "SET_ALERT": "Configurar alerta",
+    "ALERT_SET": "Alerta configurada",
+    "CANCEL_ALERT": "Cancelar alerta",
+    "RADIUS_LABEL": "Radio",
+    "ARRIVAL_TITLE": "¡Ya llegaste a tu destino!",
+    "ARRIVAL_SUBTITLE": "Preparáte para bajar",
+    "GOOGLE_SUGGESTIONS": "Sugerencias por Google Places"
+  },
+  "SETTINGS": {
+    "TITLE": "Configuración",
+    "RADIUS": "Radio de alerta",
+    "NOTIFICATIONS": "Notificaciones",
+    "ABOUT": "Acerca de Proxly",
+    "LANGUAGE": "Idioma",
+    "THEME": "Tema",
+    "UNITS": "Unidades",
+    "METERS": "Metros",
+    "MILES": "Millas",
+    "METERS_SHORT": "m",
+    "MILES_SHORT": "mi",
+    "KILOMETERS_SHORT": "km",
+    "SEARCH_HISTORY": "Historial de búsquedas",
+    "GEOFENCE_RADIUS": "Radio de Geofencing (metros)",
+    "SAVE": "Guardar Configuración",
+    "GEOFENCING_ACTIVE": "Alertas por proximidad",
+    "GEOFENCING_ENABLED": "Geofencing activado",
+    "GEOFENCING_ENABLED_WITH_DISTANCE": "Geofencing activado",
+    "GEOFENCING_DISABLED": "Geofencing desactivado",
+    "DISTANCE_TO_DESTINATION": "al destino"
+  },
+  "DESTINATIONS": {
+    "TITLE": "Destinos"
+  },
+  "HELP": {
+    "TITLE": "¿Cómo funciona Proxly?",
+    "STEP1_TITLE": "1. Elegí tu destino",
+    "STEP1_DESC": "Tocá en el mapa o buscá una dirección para marcar el lugar donde querés que te avisemos.",
+    "STEP2_TITLE": "2. Ajustá el radio",
+    "STEP2_DESC": "Configurá la distancia de alerta usando el control deslizante. Proxly te avisará cuando entres en esa zona.",
+    "STEP3_TITLE": "3. Activá las alertas",
+    "STEP3_DESC": "Asegurate de que el toggle de alertas esté activado para recibir notificaciones en segundo plano.",
+    "STEP4_TITLE": "4. ¡Relajate y viajá!",
+    "STEP4_DESC": "Proxly funciona en segundo plano. Te despertará con notificación, vibración y sonido al llegar.",
+    "TIPS_TITLE": "Consejos útiles:",
+    "TIP1": "Mantené la app en segundo plano para que funcione correctamente",
+    "TIP2": "Ajustá el radio según el medio de transporte: más grande para auto, más chico para caminar",
+    "TIP3": "Verificá que tengas permisos de ubicación y notificaciones activados"
+  }
+}

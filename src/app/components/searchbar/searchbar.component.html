@@ -1,0 +1,19 @@
+<ion-searchbar
+  [(ngModel)]="query"
+  (ionInput)="searchLocation()"
+  [placeholder]="'MAP.SEARCH_PLACEHOLDER' | translate"
+></ion-searchbar>
+
+<ion-list *ngIf="suggestions.length > 0">
+  <ion-item
+    *ngFor="let suggestion of suggestions"
+    (click)="selectSuggestion(suggestion)"
+  >
+    {{ suggestion.description || suggestion.structured_formatting?.main_text }}
+  </ion-item>
+  <ion-item lines="none" color="light">
+    <ion-label class="ion-text-wrap">{{
+      "MAP.GOOGLE_SUGGESTIONS" | translate
+    }}</ion-label>
+  </ion-item>
+</ion-list>
